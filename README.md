@@ -3,7 +3,7 @@
 
 ![Jan Suraksha Banner](https://via.placeholder.com/1000x300?text=Jan+Suraksha+Portal+-+Making+India+Safer)
 
-![SSoC Badge](https://img.shields.io/badge/SSoC-Season%206-orange?style=for-the-badge&logo=github)
+
 ![Language](https://img.shields.io/badge/Language-PHP-blue?style=for-the-badge&logo=php&logoColor=white)
 ![Database](https://img.shields.io/badge/Database-MySQL-lightgrey?style=for-the-badge&logo=mysql&logoColor=white)
 ![Deployment](https://img.shields.io/badge/Deployment-Automated%20CI%2FCD-brightgreen?style=for-the-badge)
