@@ -1,23 +1,18 @@
-name: Deploy to InfinityFree
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4.1.7
-      with:
-        fetch-depth: 2
-
-    - name: FTP-Deploy-Action
+- name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ./htdocs/     # <--- I added a DOT here. This helps prevent the "double folder" issue.
-        log-level: verbose        # <--- This will give us more details if it fails.
+        
+        # 1. This uploads ONLY the content inside the folder, not the folder itself
+        local-dir: ./jan_suraksha/
+        
+        # 2. Upload to the main public folder on InfinityFree
+        server-dir: ./htdocs/
+        
+        # 3. Fix the exclude rule to match where the file actually is
+        exclude: |
+          **/.git*
+          **/.git*/**
+          config.php
