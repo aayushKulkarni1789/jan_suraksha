@@ -271,7 +271,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <h5 class="text-uppercase fw-bold mb-4">Legal</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2"><a href="privacy.php">Privacy Policy</a></li>
-                    <li class="mb-2"><a href="#">Terms of Service</a></li>
+                    <li class="mb-2"><a href="terms.php">Terms of Service</a></li>
                     <li class="mb-2"><a href="admin/index.php">Administrator Login</a></li>
                 </ul>
             </div>
