@@ -216,19 +216,21 @@ body {
     <form method="post" id="loginForm" novalidate>
       <div class="mb-3">
         <label class="form-label">Email or Mobile Number</label>
-<input class="form-control" name="id" type="text" autocomplete="username" placeholder="Enter email or mobile number">
-<div class="invalid-feedback">Please enter your email or mobile number.</div>
+        <input class="form-control" name="id" type="text" autocomplete="username" placeholder="Enter email or mobile number">
+        <div class="invalid-feedback">Please enter your email or mobile number.</div>
+      </div>
 
-<label class="form-label">Password</label>
-<div class="input-group">
-  <input class="form-control" id="passwordField" name="password" type="password"
-         autocomplete="current-password" placeholder="Enter your password" required minlength="6">
-  <button class="btn input-group-text" type="button" id="togglePassword">
-    <i class="bi bi-eye" id="toggleIcon"></i>
-  </button>
-</div>
-<div class="invalid-feedback">Password must be at least 6 characters.</div>
-
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <div class="input-group">
+          <input class="form-control" id="passwordField" name="password" type="password"
+                 autocomplete="current-password" placeholder="Enter your password" required minlength="6">
+          <button class="btn input-group-text" type="button" id="togglePassword">
+            <i class="bi bi-eye" id="toggleIcon"></i>
+          </button>
+        </div>
+        <div class="invalid-feedback">Password must be at least 6 characters.</div>
+      </div>
 
       <button class="btn btn-primary w-100" type="submit">
         <i class="bi bi-box-arrow-in-right me-2"></i>Login
