@@ -88,9 +88,15 @@ Jan-Suraksha/
 | Home Page | Complaint Form |
 | :---: | :---: |
 | <img width="1913" height="925" alt="Screenshot 2025-12-07 195411" src="https://github.com/user-attachments/assets/d5163e3c-ef33-43dc-bd2c-d5ace7925f67" /> | <img width="1897" height="928" alt="Screenshot 2025-12-07 195453" src="https://github.com/user-attachments/assets/036f94c0-80fc-4a91-9d76-47a496f6b25c" /> |
+| <img width="1895" height="927" alt="image" src="https://github.com/user-attachments/assets/9c126e31-7a32-4d1a-b96e-dabb5f04d20d" /> | <img width="1918" height="889" alt="image" src="https://github.com/user-attachments/assets/0c5d3021-4ec1-4121-b071-7e1595a11b68" /> |
+|<img width="1902" height="888" alt="image" src="https://github.com/user-attachments/assets/a2af0064-5b11-465b-9873-45e0801182aa" /> | <img width="1863" height="842" alt="image" src="https://github.com/user-attachments/assets/ef31c001-9214-4229-b623-4828a8306fe4" /> |
+
+
+
+
 
 -----
-
+> ⚠️ IMPORTANT: TO get assess to admin page use Username : admin , password  : admin 
 ## 🛠️ Getting Started (Installation)
 
 Follow these steps to set up the project locally on your machine.
