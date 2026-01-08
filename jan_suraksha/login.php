@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $row = $res->fetch_assoc();
 
           if ($row && password_verify($password, $row['password_hash'])) {
+            // Session Fixation Protection - Regenerate session ID
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['name'];
             // Regenerate CSRF token after successful login

@@ -1,5 +1,15 @@
 
 <?php
+// Secure Session Cookie Configuration - MUST be before session_start()
+session_set_cookie_params([
+    'lifetime' => 3600,  // 1 hour
+    'path' => '/',
+    'domain' => '',
+    'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',  // HTTPS only in production
+    'httponly' => true,   // Prevent JavaScript access
+    'samesite' => 'Strict' // Prevent CSRF - only send cookie in same-site requests
+]);
+
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

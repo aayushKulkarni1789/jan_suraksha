@@ -34,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $ins->bind_param('ssss', $name, $mobile, $email, $hash);
 
                 if ($ins->execute()) {
+                    // Session Fixation Protection - Regenerate session ID
+                    session_regenerate_id(true);
                     // Regenerate CSRF token after successful registration
                     unset($_SESSION['csrf_token']);
                     header('Location: register-success.php');

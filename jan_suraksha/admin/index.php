@@ -13,6 +13,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $stmt->bind_param('s',$aid); $stmt->execute(); $res = $stmt->get_result();
         if($row = $res->fetch_assoc()){
             if(password_verify($pass,$row['password_hash'])){
+                // Session Fixation Protection - Regenerate session ID
+                session_regenerate_id(true);
                 $_SESSION['admin_id'] = $row['id'];
                 $_SESSION['admin_name'] = $row['admin_name'];
                 // Regenerate CSRF token after successful login
