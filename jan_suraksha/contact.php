@@ -110,7 +110,7 @@
                                     <label for="phone" class="form-label">Phone Number *</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-                                        <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
+                                        <input type="tel" class="form-control" id="phone" name="phone" pattern="[6-9][0-9]{9}" required>
                                     </div>
                                 </div>
 
