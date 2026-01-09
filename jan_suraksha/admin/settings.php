@@ -37,6 +37,10 @@ function getSettings($mysqli) {
     ];
     
     $stmt = $mysqli->prepare("SELECT settings_data FROM settings WHERE id = 1");
+    if ($stmt === false) {
+        // If settings table doesn't exist or query fails, return defaults
+        return $defaults;
+    }
     $stmt->execute();
     $result = $stmt->get_result();
     if ($row = $result->fetch_assoc()) {
@@ -65,14 +69,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token']) && $_PO
     
     $settings_data = json_encode($settings);
     $stmt = $mysqli->prepare("INSERT INTO settings (id, settings_data) VALUES (1, ?) ON DUPLICATE KEY UPDATE settings_data = ?");
-    $stmt->bind_param("ss", $settings_data, $settings_data);
-    
-    if ($stmt->execute()) {
-        $success = "All settings updated successfully!";
+    if ($stmt === false) {
+        $error = "Failed to prepare statement: " . $mysqli->error;
     } else {
-        $error = "Failed to save settings: " . $mysqli->error;
+        $stmt->bind_param("ss", $settings_data, $settings_data);
+        
+        if ($stmt->execute()) {
+            $success = "All settings updated successfully!";
+        } else {
+            $error = "Failed to save settings: " . $mysqli->error;
+        }
+        $stmt->close();
     }
-    $stmt->close();
 }
 
 $current_settings = getSettings($mysqli);

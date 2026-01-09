@@ -3,7 +3,7 @@ require_once __DIR__ . '/config.php';
 
 $err = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
     // CSRF Protection
     if (!validate_csrf_token($_POST['csrf_token'] ?? '')) {
         $err = 'Invalid security token. Please refresh the page and try again.';
@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Validation
         if (!$name || !preg_match('/^[0-9]{10}$/', $mobile) || !$crime) {
-        $err = 'Fill required fields: name, 10-digit mobile, crime type.';
-    } elseif ($pincode && !preg_match('/^[0-9]{6}$/', $pincode)) {
-        $err = 'Pincode must be 6 digits.';
-    } else {
-        // Handle file upload (evidence)
-        $uploadedFile = null;
+            $err = 'Fill required fields: name, 10-digit mobile, crime type.';
+        } elseif ($pincode && !preg_match('/^[0-9]{6}$/', $pincode)) {
+            $err = 'Pincode must be 6 digits.';
+        } else {
+            // Handle file upload (evidence)
+            $uploadedFile = null;
 
-        if (!empty($_FILES['evidence']) && $_FILES['evidence']['error'] !== UPLOAD_ERR_NO_FILE) {
+            if (!empty($_FILES['evidence']) && $_FILES['evidence']['error'] !== UPLOAD_ERR_NO_FILE) {
             $evidenceFile = $_FILES['evidence'];
 
             // Strict allow-list: images + selected document/media types

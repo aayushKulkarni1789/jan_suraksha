@@ -26,8 +26,11 @@ if (!$criminal_id) {
     // Fetch paginated criminals and join complaint to get tracking code and current complaint status - Using Prepared Statement
     $stmt = $mysqli->prepare("SELECT cr.*, c.complaint_code, c.status AS complaint_status 
             FROM criminals cr 
-            LEFT JOIN complaints c ON c.accused_id = cr.id 
+            LEFT JOIN complaints c ON c.id = cr.complaint_id 
             ORDER BY cr.created_at DESC LIMIT ?, ?");
+    if ($stmt === false) {
+        die('Prepare failed: ' . $mysqli->error);
+    }
     $offset_int = (int)$offset;
     $per_page_int = (int)$per_page;
     $stmt->bind_param('ii', $offset_int, $per_page_int);
@@ -103,13 +106,19 @@ if (!$criminal_id) {
 
             // Update criminal
             $stmt = $mysqli->prepare("UPDATE criminals SET full_name=?, fathers_name=?, aliases=?, dob=?, physical_description=?, last_known_address=?, punishment_section=?, punishment_description=?, mugshot=?, current_status=? WHERE id=?");
+            if ($stmt === false) {
+                throw new Exception('Prepare failed: ' . $mysqli->error);
+            }
             $stmt->bind_param('ssssssssssi', $full_name, $father_name, $aliases, $dob, $physical_desc, $last_address, $punishment_law, $punishment_desc, $new_mugshot, $current_status, $criminal_id);
             $stmt->execute();
 
             // Link to complaint if provided
             if ($complaint_id) {
-                $stmt2 = $mysqli->prepare("UPDATE complaints SET accused_id = ? WHERE id = ?");
-                $stmt2->bind_param('ii', $criminal_id, $complaint_id);
+                $stmt2 = $mysqli->prepare("UPDATE criminals SET complaint_id = ? WHERE id = ?");
+                if ($stmt2 === false) {
+                    throw new Exception('Prepare failed: ' . $mysqli->error);
+                }
+                $stmt2->bind_param('ii', $complaint_id, $criminal_id);
                 $stmt2->execute();
             }
 
@@ -122,7 +131,10 @@ if (!$criminal_id) {
     }
 
     // Fetch criminal data
-    $stmt = $mysqli->prepare("SELECT cr.*, c.id as complaint_id, c.complaint_code FROM criminals cr LEFT JOIN complaints c ON cr.id = c.accused_id WHERE cr.id = ?");
+    $stmt = $mysqli->prepare("SELECT cr.*, c.id as complaint_id, c.complaint_code FROM criminals cr LEFT JOIN complaints c ON cr.complaint_id = c.id WHERE cr.id = ?");
+    if ($stmt === false) {
+        die('Prepare failed: ' . $mysqli->error);
+    }
     $stmt->bind_param('i', $criminal_id);
     $stmt->execute();
     $criminal = $stmt->get_result()->fetch_assoc();
