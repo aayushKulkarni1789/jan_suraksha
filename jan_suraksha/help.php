@@ -204,7 +204,7 @@ body {
     <div class="container">
         <h1 class="display-4 fw-bold">Help & Support</h1>
         <p class="lead col-lg-8 mx-auto">
-            Get instant assistance with our AI-powered chatbot. We're here to help you with any questions about our services.
+            Get instant assistance with our chatbot. We're here to help you with any questions about our services.
         </p>
     </div>
 </header>
@@ -307,9 +307,8 @@ class Chatbot {
                 "Check our 'Contact' page for ways to reach our support team. We're here to assist you!"
             ],
             default: [
-                "Let me help - you can find more information on our homepage or contact page.",
-                "For detailed information about this topic, please visit the relevant section on our website.",
-                "For specific assistance with this matter, you might want to check our homepage or contact our support team."
+                "It looks like I cannot solve your problem at the moment. For additional information, please visit the relevant section on our website or contact us directly via the contact page.",
+                "It looks like I cannot solve your problem at the moment. For specific assistance with this matter, you might want to check our homepage or contact our support team."
             ]
         };
         
@@ -373,7 +372,7 @@ class Chatbot {
             return this.getRandomResponse('complaint');
         } else if (lowerMessage.includes('track') || lowerMessage.includes('status') || lowerMessage.includes('case')) {
             return this.getRandomResponse('track');
-        } else if (lowerMessage.includes('register') || lowerMessage.includes('account') || lowerMessage.includes('sign up')) {
+        } else if (lowerMessage.includes('register') || lowerMessage.includes('account') || lowerMessage.includes('sign up') || lowerMessage.includes('login') || lowerMessage.includes('log')) {
             return this.getRandomResponse('register');
         } else if (lowerMessage.includes('safety') || lowerMessage.includes('guideline') || lowerMessage.includes('tips')) {
             return this.getRandomResponse('safety');
